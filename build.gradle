@@ -1,0 +1,41 @@
+group 'com.jukipuki'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext{
+        gwtVer = '2.8.0'
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    }
+}
+
+repositories{
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+gwt{
+    modules 'com.jukipuki.gwt'
+    devModules 'com.jukipuki.gwt'
+    minHeapSize = "512M";
+    maxHeapSize = "2048M";
+}
+
+dependencies {
+    compile "com.google.gwt:gwt-user:$gwtVer"
+    compile "com.google.gwt:gwt-dev:$gwtVer"
+    compile 'com.google.guava:guava-gwt:18.0'
+
+    testCompile 'junit:junit:4.11'
+}
